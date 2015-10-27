@@ -57,7 +57,7 @@ class mcollective_profile::middleware_host
   $rabbitmq_config_dir        = $::mcollective_profile::params::rabbitmq_config_dir,
   $rabbitmq_vhost             = '/mcollective',
   $rabbitmq_delete_guest_user = false,
-) inherits mcollective::profile::params
+) inherits mcollective_profile::params
 {
   if (!defined(Class['::mcollective_profile']))
   {
