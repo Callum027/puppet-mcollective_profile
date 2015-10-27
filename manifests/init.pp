@@ -12,9 +12,22 @@
 #
 # === Examples
 #
-#  class { 'mcollective_profile':
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
-#  }
+# class
+# { '::mcollective_profile':
+#   middleware_hosts   => [$::fqdn],
+#   securityprovider   => 'ssl',
+#   ssl_client_certs   => 'puppet:///mcollective_certs',
+#   ssl_ca_cert        => "puppet:///mcollective_certs/ca.pem",
+#   ssl_server_public  => "puppet:///mcollective_certs/server_public.pem",
+#   ssl_server_private => "puppet:///mcollective_private_keys/server_private.pem",
+# }
+#
+# class
+# { '::mcollective_profile':
+#   middleware_hosts   => [$::fqdn],
+#   securityprovider   => 'psk',
+#   psk                => 'marionette',
+# }
 #
 # === Authors
 #

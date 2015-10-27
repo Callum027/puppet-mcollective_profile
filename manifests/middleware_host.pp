@@ -4,6 +4,28 @@
 #
 # === Parameters
 #
+# Superset of the parameters for the mcollective_profile base class.
+#
+# [*middleware_admin_user*]
+#   The administrator user name for RabbitMQ.
+#   Default is 'admin'.
+#
+# [*middleware_admin_password*]
+#   The administrator user password for RabbitMQ.
+#   Default is 'secret', and should be changed to something stronger.
+#
+# [*rabbitmq_config_dir*]
+#   The RabbitMQ configuration directory.
+#   Defaults to the corresponding value in mcollective_profile::params.
+#
+# [*rabbitmq_vhost*]
+#   The RabbitMQ default virtual host.
+#   Default is '/mcollective'.
+#
+# [*rabbitmq_delete_guest_user*]
+#   Controls whether or not the rabbitmq class should delete the default guest user.
+#   Default is false.
+#
 # === Variables
 #
 # === Examples
@@ -32,10 +54,10 @@ class mcollective_profile::middleware_host
   $middleware_admin_user      = 'admin',
   $middleware_admin_password  = 'secret',
 
-  $rabbitmq_config_dir        = '/etc/rabbitmq',
+  $rabbitmq_config_dir        = $::mcollective_profile::params::rabbitmq_config_dir,
   $rabbitmq_vhost             = '/mcollective',
   $rabbitmq_delete_guest_user = false,
-)
+) inherits mcollective::profile::params
 {
   if (!defined(Class['::mcollective_profile']))
   {
