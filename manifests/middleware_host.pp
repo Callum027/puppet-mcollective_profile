@@ -43,8 +43,8 @@
 class mcollective_profile::middleware_host
 (
   $ssl_ca_cert                = $::mcollective_profile::ssl_ca_cert,
-  $ssl_server_cert            = $::mcollective_profile::ssl_server_cert,
   $ssl_server_private         = $::mcollective_profile::ssl_server_private,
+  $ssl_server_public          = $::mcollective_profile::ssl_server_public,
 
   $middleware_port            = $::mcollective_profile::middleware_port,
   $middleware_ssl_port        = $::mcollective_profile::middleware_ssl_port,

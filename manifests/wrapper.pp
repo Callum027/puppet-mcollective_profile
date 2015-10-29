@@ -13,10 +13,10 @@ define mcollective_profile::wrapper
 
   $psk,
 
-  $ssl_client_certs,
   $ssl_ca_cert,
-  $ssl_server_public,
+  $ssl_client_certs,
   $ssl_server_private,
+  $ssl_server_public,
 
   $server = false,
   $client = false,
@@ -36,10 +36,10 @@ define mcollective_profile::wrapper
 
     psk                 => $psk,
 
-    ssl_client_certs    => $ssl_client_certs,
     ssl_ca_cert         => $ssl_ca_cert,
-    ssl_server_public   => $ssl_server_public,
+    ssl_client_certs    => $ssl_client_certs,
     ssl_server_private  => $ssl_server_private,
+    ssl_server_public   => $ssl_server_public,
 
     server              => $server,
     client              => $client,
