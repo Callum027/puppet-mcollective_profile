@@ -60,22 +60,22 @@ class mcollective_profile
 {
   @::mcollective_profile::wrapper
   { '::mcollective_profile::wrapper':
-    middleware_hosts   => $middleware_hosts,
-    middleware_ssl     => $middlware_ssl,
-    middlware_port     => $middleware_port,
-    middlware_ssl_port => $middleware_ssl_port,
-    middlware_user     => $middleware_user,
-    middlware_password => $middleware_password,
+    middleware_hosts    => $middleware_hosts,
+    middleware_ssl      => $middlware_ssl,
+    middleware_port     => $middleware_port,
+    middleware_ssl_port => $middleware_ssl_port,
+    middleware_user     => $middleware_user,
+    middleware_password => $middleware_password,
 
-    connector          => $connector,
+    connector           => $connector,
 
-    securityprovider   => $securityprovider,
+    securityprovider    => $securityprovider,
 
-    psk                => $psk,
+    psk                 => $psk,
 
-    ssl_ca_cert        => $ssl_ca_cert,
-    ssl_client_certs   => $ssl_client_certs,
-    ssl_server_private => $ssl_server_private,
-    ssl_server_public  => $ssl_server_public,
+    ssl_ca_cert         => $ssl_ca_cert,
+    ssl_client_certs    => $ssl_client_certs,
+    ssl_server_private  => $ssl_server_private,
+    ssl_server_public   => $ssl_server_public,
   }
 }
