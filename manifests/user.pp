@@ -24,7 +24,7 @@
 #
 # Copyright 2015 Callum Dickinson.
 #
-class mcollective_profile::user
+define mcollective_profile::user
 (
   $ensure            = 'present',
 
