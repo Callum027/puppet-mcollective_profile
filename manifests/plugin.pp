@@ -44,5 +44,10 @@ define mcollective_profile::plugin
 
       require    => Class['::mcollective_profile::server'],
     }
+
+    if (defined(Class['::mcollective_profile::client']))
+    {
+      Class['::mcollective_profile::client'] -> ::Mcollective::Plugin[$name]
+    }
   }
 }

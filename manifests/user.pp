@@ -86,5 +86,10 @@ define mcollective_profile::user
 
       require           => Class['::mcollective_profile::client'],
     }
+
+    if (defined(Class['::mcollective_profile::server']))
+    {
+      Class['::mcollective_profile::server'] -> ::Mcollective::User[$name]
+    }
   }
 }

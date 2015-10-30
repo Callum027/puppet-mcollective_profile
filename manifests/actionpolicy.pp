@@ -36,5 +36,10 @@ define mcollective_profile::actionpolicy
       default => $default,
       require => Class['::mcollective_profile::server'],
     }
+
+    if (defined(Class['::mcollective_profile::client']))
+    {
+      Class['::mcollective_profile::client'] -> ::Mcollective::Actionpolicy[$name]
+    }
   }
 }
