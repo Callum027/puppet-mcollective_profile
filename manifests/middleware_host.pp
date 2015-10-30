@@ -78,7 +78,7 @@ class mcollective_profile::middleware_host
     owner  => 'rabbitmq',
     group  => 'rabbitmq',
     mode   => '0444',
-    source => $ssl_server_cert,
+    source => $ssl_server_public,
     notify => Class['::rabbitmq::service'],
   }
 
@@ -114,7 +114,7 @@ class mcollective_profile::middleware_host
   rabbitmq_vhost
   { $rabbitmq_vhost:
     ensure => 'present',
-    notify => Service['rabbitmq-server'],
+    notify => Class['::rabbitmq::service'],
   }
 
   rabbitmq_user
@@ -122,7 +122,7 @@ class mcollective_profile::middleware_host
     ensure   => 'present',
     admin    => false,
     password => $middleware_password,
-    notify   => Service['rabbitmq-server'],
+    notify   => Class['::rabbitmq::service'],
   }
 
   rabbitmq_user
@@ -130,7 +130,7 @@ class mcollective_profile::middleware_host
     ensure   => 'present',
     admin    => true,
     password => $middleware_admin_password,
-    notify   => Service['rabbitmq-server'],
+    notify   => Class['::rabbitmq::service'],
   }
 
   rabbitmq_user_permissions
@@ -138,13 +138,13 @@ class mcollective_profile::middleware_host
     configure_permission => '.*',
     read_permission      => '.*',
     write_permission     => '.*',
-    notify               => Service['rabbitmq-server'],
+    notify               => Class['::rabbitmq::service'],
   }
 
   rabbitmq_user_permissions
   { "${middleware_admin_user}@${rabbitmq_vhost}":
     configure_permission => '.*',
-    notify               => Service['rabbitmq-server'],
+    notify               => Class['::rabbitmq::service'],
   }
 
   rabbitmq_exchange
