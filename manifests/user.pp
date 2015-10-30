@@ -65,6 +65,13 @@ define mcollective_profile::user
 
   if ($ensure == 'present' or $ensure == present)
   {
+    if (!defined(Class['::mcollective_profile::client']))
+    {
+      fail('The ::mcollective_profile::client class needs to be defined before this resource can be declared')
+    }
+
+    realize ::Mcollective_profile::Wrapper['::mcollective_profile::wrapper']
+
     ::mcollective::user
     { $name:
       username          => $username,
@@ -84,12 +91,7 @@ define mcollective_profile::user
       securityprovider  => $securityprovider,
       connector         => $connector,
 
-      require           => Class['::mcollective_profile::client'],
-    }
-
-    if (defined(Class['::mcollective_profile::server']))
-    {
-      Class['::mcollective_profile::server'] -> ::Mcollective::User[$name]
+      require           => ::Mcollective_profile::Wrapper['::mcollective_profile::wrapper'],
     }
   }
 }

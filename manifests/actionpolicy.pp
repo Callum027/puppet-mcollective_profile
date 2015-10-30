@@ -31,15 +31,17 @@ define mcollective_profile::actionpolicy
 {
   if ($ensure == 'present' or $ensure == present)
   {
+    if (!defined(Class['::mcollective_profile::server']))
+    {
+      fail('The ::mcollective_profile::server class needs to be defined before this resource can be declared')
+    }
+
+    realize ::Mcollective_profile::Wrapper['::mcollective_profile::wrapper']
+
     ::mcollective::actionpolicy
     { $name:
       default => $default,
-      require => Class['::mcollective_profile::server'],
-    }
-
-    if (defined(Class['::mcollective_profile::client']))
-    {
-      Class['::mcollective_profile::client'] -> ::Mcollective::Actionpolicy[$name]
+      require => ::Mcollective_profile::Wrapper['::mcollective_profile::wrapper'],
     }
   }
 }

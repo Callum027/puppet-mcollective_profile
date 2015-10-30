@@ -35,6 +35,13 @@ define mcollective_profile::plugin
 {
   if ($ensure == 'present' or $ensure == present)
   {
+    if (!defined(Class['::mcollective_profile::server']))
+    {
+      fail('The ::mcollective_profile::server class needs to be defined before this resource can be declared')
+    }
+
+    realize ::Mcollective_profile::Wrapper['::mcollective_profile::wrapper']
+
     ::mcollective::plugin
     { $name:
       source     => $source,
@@ -42,12 +49,7 @@ define mcollective_profile::plugin
       type       => $type,
       has_client => $has_client,
 
-      require    => Class['::mcollective_profile::server'],
-    }
-
-    if (defined(Class['::mcollective_profile::client']))
-    {
-      Class['::mcollective_profile::client'] -> ::Mcollective::Plugin[$name]
+      require    => ::Mcollective_profile::Wrapper['::mcollective_profile::wrapper'],
     }
   }
 }

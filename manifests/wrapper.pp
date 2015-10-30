@@ -32,7 +32,7 @@ define mcollective_profile::wrapper
 
     connector           => $connector,
 
-    securiyprovider     => $securityprovider,
+    securityprovider     => $securityprovider,
 
     psk                 => $psk,
 
