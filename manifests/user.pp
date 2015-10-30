@@ -46,6 +46,17 @@ define mcollective_profile::user
   $connector         = $::mcollective_profile::connector,
 )
 {
+  user
+  { $name:
+    ensure     => $ensure,
+
+    home       => $homedir,
+    managehome => true,
+
+    password   => '!',
+    shell      => '/usr/sbin/nologin',
+  }
+
   if ($ensure == 'present' or $ensure == present)
   {
     ::mcollective::user
