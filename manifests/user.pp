@@ -12,8 +12,8 @@
 #
 # ::mcollective_profile::user
 # { 'puppet':
-#   certificate       => '/etc/ssl/certs/puppet.pem',
-#   private_key       => '/etc/ssl/private/puppet.pem',
+#   certificate => '/etc/ssl/certs/puppet.pem',
+#   private_key => '/etc/ssl/private/puppet.pem',
 # }
 #
 # === Authors
