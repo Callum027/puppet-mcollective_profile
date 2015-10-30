@@ -77,7 +77,5 @@ class mcollective_profile
     ssl_client_certs    => $ssl_client_certs,
     ssl_server_private  => $ssl_server_private,
     ssl_server_public   => $ssl_server_public,
-
-    tag                 => '::mcollective_profile::wrapper',
   }
 }

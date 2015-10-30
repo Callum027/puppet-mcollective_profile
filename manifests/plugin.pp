@@ -48,8 +48,6 @@ define mcollective_profile::plugin
       package    => $package,
       type       => $type,
       has_client => $has_client,
-
-      require    => ::Mcollective_profile::Wrapper['::mcollective_profile::wrapper'],
     }
   }
 }

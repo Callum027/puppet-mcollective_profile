@@ -25,7 +25,7 @@ class mcollective_profile::server
     fail('The ::mcollective_profile base class needs to be defined before this class')
   }
 
-  ::Mcollective_profile::Wrapper <| tag == '::mcollective_profile::wrapper' |>
+  ::Mcollective_profile::Wrapper <| title == '::mcollective_profile::wrapper' |>
   {
     server => true,
   }

@@ -41,7 +41,6 @@ define mcollective_profile::actionpolicy
     ::mcollective::actionpolicy
     { $name:
       default => $default,
-      require => ::Mcollective_profile::Wrapper['::mcollective_profile::wrapper'],
     }
   }
 }

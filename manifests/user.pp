@@ -90,8 +90,6 @@ define mcollective_profile::user
 
       securityprovider  => $securityprovider,
       connector         => $connector,
-
-      require           => ::Mcollective_profile::Wrapper['::mcollective_profile::wrapper'],
     }
   }
 }
