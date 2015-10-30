@@ -27,6 +27,7 @@
 define mcollective_profile::user
 (
   $ensure            = 'present',
+  $manage_user       = false,
 
   $username          = $name,
   $callerid          = $name,
@@ -46,15 +47,18 @@ define mcollective_profile::user
   $connector         = $::mcollective_profile::connector,
 )
 {
-  user
-  { $name:
-    ensure     => $ensure,
+  if ($manage_user == true)
+  {
+    user
+    { $name:
+      ensure     => $ensure,
 
-    home       => $homedir,
-    managehome => true,
+      home       => $homedir,
+      managehome => true,
 
-    password   => '!',
-    shell      => '/usr/sbin/nologin',
+      password   => '!',
+      shell      => '/usr/sbin/nologin',
+    }
   }
 
   if ($ensure == 'present' or $ensure == present)
