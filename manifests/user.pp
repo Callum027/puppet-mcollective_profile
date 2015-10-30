@@ -58,6 +58,8 @@ define mcollective_profile::user
 
       password   => '!',
       shell      => '/usr/sbin/nologin',
+
+      before     => ::Mcollective::User[$name],
     }
   }
 
