@@ -37,12 +37,12 @@ define mcollective_profile::plugin
   {
     ::mcollective::plugin
     { $name:
-      source     = $source,
-      package    = $package,
-      type       = $type,
-      has_client = $has_client,
+      source     => $source,
+      package    => $package,
+      type       => $type,
+      has_client => $has_client,
 
-      require => Class['::mcollective_profile::server'],
+      require    => Class['::mcollective_profile::server'],
     }
   }
 }
