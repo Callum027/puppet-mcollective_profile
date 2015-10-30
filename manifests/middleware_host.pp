@@ -70,7 +70,7 @@ class mcollective_profile::middleware_host
     group  => 'rabbitmq',
     mode   => '0444',
     source => $ssl_ca_cert,
-    notify => Class['::rabbitmq::service'],
+    notify => Service['rabbitmq-server'],
   }
 
   file
@@ -79,7 +79,7 @@ class mcollective_profile::middleware_host
     group  => 'rabbitmq',
     mode   => '0444',
     source => $ssl_server_public,
-    notify => Class['::rabbitmq::service'],
+    notify => Service['rabbitmq-server'],
   }
 
   file
@@ -88,7 +88,7 @@ class mcollective_profile::middleware_host
     group  => 'rabbitmq',
     mode   => '0400',
     source => $ssl_server_private,
-    notify => Class['::rabbitmq::service'],
+    notify => Service['rabbitmq-server'],
   }
 
   class
@@ -114,7 +114,7 @@ class mcollective_profile::middleware_host
   rabbitmq_vhost
   { $rabbitmq_vhost:
     ensure => 'present',
-    notify => Class['::rabbitmq::service'],
+    notify => Service['rabbitmq-server'],
   }
 
   rabbitmq_user
@@ -122,7 +122,7 @@ class mcollective_profile::middleware_host
     ensure   => 'present',
     admin    => false,
     password => $middleware_password,
-    notify   => Class['::rabbitmq::service'],
+    notify   => Service['rabbitmq-server'],
   }
 
   rabbitmq_user
@@ -130,7 +130,7 @@ class mcollective_profile::middleware_host
     ensure   => 'present',
     admin    => true,
     password => $middleware_admin_password,
-    notify   => Class['::rabbitmq::service'],
+    notify   => Service['rabbitmq-server'],
   }
 
   rabbitmq_user_permissions
@@ -138,13 +138,13 @@ class mcollective_profile::middleware_host
     configure_permission => '.*',
     read_permission      => '.*',
     write_permission     => '.*',
-    notify               => Class['::rabbitmq::service'],
+    notify               => Service['rabbitmq-server'],
   }
 
   rabbitmq_user_permissions
   { "${middleware_admin_user}@${rabbitmq_vhost}":
     configure_permission => '.*',
-    notify               => Class['::rabbitmq::service'],
+    notify               => Service['rabbitmq-server'],
   }
 
   rabbitmq_exchange
